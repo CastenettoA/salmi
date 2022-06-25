@@ -1,0 +1,30 @@
+
+(\\n)([0-9]{1,3})
+
+
+
+// console.log(file.split(/(Salmo)/)); // splittaa per 'Salmo' senza eliminare questa scringo
+// console.log(file.split(/(Salmo).*?\n/));
+
+// let fileParsed = file.split(/(Salmo [0-9]{1,3})/);
+// let fileParsed = file.split(/(Salmo [0-9]{1,3} [([0-9]{1,3}\)]?)/);
+
+    regex ->        \\n[\w’',À<>È“” ]+\\n\\n
+    explain -> seleziona \n TITOLO \n. Seleziona correttamente i 150 titoli. Utilizzare in maiuscolo
+
+    da fare
+    1) estrarre i titoli, dividere le rime e convertire in json utilizzabile
+
+ "[1].+2  -> first salmo line
+ ("[1].+?)(2)  -> first salmo line but gruped $1 = 1° salmo line | $2 = the number 2
+("[48].+?)(49)       $1","$2
+
+
+"Salmo [0-9]{1,3} ?\(?[0-9A-Z]{0,2}\)?   match SALMO XYZ
+\\n[A-Z\sÀ’“,><”È]+\\n\\n match TITLE
+
+(Salmo [0-9]{1,3} ?\(?[0-9]{0,2}\)?)  select all Salmo xx
+([A-Z\sÀ’“,><”È]+",)((.|\n)+?\\n\\n\\n"),  select da titolo a fine salmo
+
+\\n([a-zA-Z]{1,10} – )",(.|\n)+?"
+--------------------------------- fine codice REGEX :p

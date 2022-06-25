@@ -1,0 +1,221 @@
+  // html { // i revome it due weird effect on route change (home -> salmo)
+  //   scroll-behavior: smooth;
+  // }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap');
+
+body {
+    background-color: #f6f8f9;
+    padding: 0 1.4em;
+    padding-top: 3em;
+    font-family: 'Open Sans';
+}
+
+.navbar {
+  position: fixed; top: 0; left: 0;
+  width: 100%;
+
+  background-color: #fff;
+  box-shadow: rgb(169 174 183 / 50%) 0px 1px 2px 0px; 
+
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width:840px) {
+      padding: 0 1.4em;
+    }
+
+    .navbar-logo {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      img {
+        width: 2.3em; height: 2.3em;
+        margin-right: .9em;
+      }
+
+      p {
+        font-weight: 500;
+        font-size: 1.2em;
+        color: #666;
+
+        span { width: 2px; display: inline-block;}
+      }
+    }
+
+    .light-mode {
+      span {
+        font-size: .8em;
+        cursor: pointer;
+        display: inline-block;
+        background-color: #efefef;
+        padding: .2em .4em;
+        border-radius: 6px;
+      }
+    }
+  
+    @media screen and (min-width: 800px) {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+}
+
+     h1 { 
+     margin-top: 0; 
+
+     .gradient {
+        background: -webkit-linear-gradient(left, #be7dff 10%, #7367F0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+     }
+  }
+
+  @media screen and (max-width: 500px) {
+    h1 { font-size: 1.6em; }
+  }
+
+  [v-cloak] {
+    display: none;
+  }
+
+  .content {
+    margin-top: 1.8em;
+  }
+
+  footer {
+    margin-top: 16px;
+  }
+
+    .copyright-sanpaolo {
+    display: flex;
+    font-style: italic;
+
+    span {
+      margin-left: 8px;
+    }
+  }
+
+    .prose {
+    font-size: 18px;
+    max-width: 460px;
+
+    .prose-row {
+      white-space: pre; // per far funzionare gli \n (a capo) presdenti nel json
+    }
+
+    @media screen and (max-width: 530px) {
+      .prose-row {
+        font-size: 15px;
+        white-space: normal; // fix necessario (altrimenti le righe vanno fuori dal viewport. @todo: controllare coportamento su righe molto grosse)
+      }
+    }
+
+    .prose-number {
+      width: 19px;
+      height: 19px;
+      // background-color: #ffe082;
+      background-color: #efefef;
+      background-color: var(--background);
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+      margin-right: 4px;
+    }
+  }
+
+  .menu-b {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--button-hover);
+    padding: 10px 16px;
+    border-radius: 6px;
+
+    button {
+      margin-bottom: 0;
+    }
+  }
+
+
+.homepage {
+
+    .title {
+      display: flex;
+      align-items: center;
+  
+      span.desc {
+        margin-top: 2px;
+        margin-left: 10px;
+        font-size: 12px;
+        opacity: .7;
+      }
+  
+      @media screen and (max-width: 630px) {
+        flex-flow: column;
+        align-items: flex-start;
+  
+        h1 { margin-bottom: 0;}
+        span.desc { margin-left: 0; margin-bottom: 1.5em;}
+      }
+    }
+  
+    details {
+      margin-top: 0;
+      margin-bottom: 2.4em;
+    }
+  
+    .elencoSalmi {
+      .book-nuber h3 {
+        color: #868a8d;
+      }
+
+      button { 
+        width: 100%;     
+        text-align: left;
+
+        background-color: #fff;
+        box-shadow: rgb(169 174 183 / 50%) 0px 1px 2px 0px; 
+        transition: all .2s; 
+
+        .salmo-number {
+          display: inline-block;
+          width: 100%;
+          font-size: .8em;
+          font-weight: 700;
+          color: #666;
+          text-align: right;
+        }
+
+        .salmo-title {
+          font-weight: 800;
+        }
+
+        .salmo-description {
+          color: #90a4ae;
+        }
+
+        &:hover {
+            transform: scale(1.04);
+            box-shadow: rgb(169 174 183 / 100%) 0px 1px 2px 0px;
+        }
+  
+        @media  screen and (min-width: 640px) {
+          
+        }
+      }
+    }
+  
+  }
+
+
+  // SALMO.VUE
+  .single-salmo {
+
+    h1 span.desc {
+      color: #666;
+    }
+  
+  }  
