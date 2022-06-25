@@ -18,4 +18,6 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-test...
+### Upload su ca.com 
+Questa app non si aggiorna in automatico tramite netlify ma deve essere caricata
+manualmente la cartella dist (dopo avere fatto una build) sul sito castenettoa.com/app/salmi.
