@@ -285,6 +285,32 @@
         background-color: #fff;
         box-shadow: rgb(169 174 183 / 50%) 0px 1px 2px 0px;
         transition: all .2s;
+        cursor: default;
+
+        .salmo-secondary-info {
+          display: flex;
+          align-items: center;
+
+          .star {
+            display: flex;
+            align-items: center;
+
+            display: flex;
+            align-items: center;
+            background-color: #eee;
+            border-radius: 50%;
+            padding: 0.25em 0.2em 0.25em 0.3em;
+            justify-content: center;
+            margin-left: 0.5em;
+            transition: .2s all;
+
+            &:hover {
+             background-color: #d1d1d1;
+             cursor: pointer;
+             transform: scale(1.3);
+            }
+          }
+        }
 
         .salmo-number {
           display: inline-block;
@@ -296,11 +322,20 @@
         }
 
         .salmo-title {
-          font-weight: 800;
+          font-weight: 700;
+          cursor: pointer;
+            &:hover {
+              text-decoration: underline;
+            }
         }
 
         .salmo-description {
           color: #90a4ae;
+          cursor: pointer;
+
+          &+b {
+            border: 2px solid orchid;
+          }
         }
 
         &:hover {

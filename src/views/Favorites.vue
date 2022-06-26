@@ -10,45 +10,16 @@
       >
     </div>
 
-    <details>
-      <summary>Cos'è il Libro dei Salmi?</summary>
-      <p>
-        Il Libro dei Salmi è un testo contenuto nella Bibbia che racchiude al
-        suo interno 150 Salmi, delle composizioni poetiche sacre scritte da vari
-        autori (principalmente dal re Davide).
-      </p>
-      <p>
-        Possiamo dire che contengono un sunto di tutta la dottrina dell'Antico
-        Testamento. Sono considerati un manuale di preghiera e meditazione che
-        Dio stesso a voluto dare ai suoi figli. 
-      </p>
-
-      <p>
-        Il salterio è diviso in 5 parti, in analogia con il Pentateuco, e ciascuna parte termina con una benedizione o dossologia
-      </p>
-
-      <button v-on:click="goToBook(1)">📕 Libro 1 →</button>
-      <button v-on:click="goToBook(2)">📕 Libro 2 →</button>
-      <button v-on:click="goToBook(3)">📕 Libro 3 →</button>
-      <button v-on:click="goToBook(4)">📕 Libro 4 →</button>
-      <button v-on:click="goToBook(5)">📕 Libro 5 →</button>
-      <hr>
-      <button v-on:click="goToPenitenziali()">📕 I 7 Salmi Penitenziali →</button>
-      <button v-on:click="goToWords()">📔 Le parole più ricorrenti nei Salmi →</button>
-
-      <!-- https://www.vatican.va/roman_curia/congregations/cfaith/pcb_documents/rc_con_cfaith_doc_19100501_psalmorum_it.html -->
-    </details>
-
     <main>
-      <h2>Elenco</h2>
-      <p style="font-size: 13.6px;">Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. Per leggere il singolo Salmo clicca sul numero o sul titolo corrispondente. Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il numero o il titolo del Salmo. Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti nei Salmi Biblici.</a></p>
+      <h2>Elenco dei Tuoi Salmi Preferiti</h2>
 
 
-      <div class="elencoSalmi">
+      <div class="elencoSalmi" v-if="thereIsFavorites">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
-          <span class="book-nuber" v-if="key+1 == 1"><h3>Libro 1</h3></span>
+          <!-- <span class="book-nuber" v-if="key+1 == 1 && salmo.favorite"><h3>Libro 1</h3></span> 
+          TODO show book number if 1 to 50 and fav=true and isFirstTime ... -->
 
-          <button>
+          <button v-if="salmo.favorite">
             <div class="salmo-secondary-info">
               <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
               <div class="star" v-on:click="addToFavorites(key+1)" title="Aggiungi-Rimuovi dai preferiti">
@@ -63,12 +34,25 @@
             <span class="salmo-description" v-on:click="goToSalmo(key + 1)">{{ salmo.description }}</span>
           </button>
 
-          <span v-if="key+1 == 41"><h3>Libro 2</h3></span>
-          <span v-if="key+1 == 72"><h3>Libro 3</h3></span>
-          <span v-if="key+1 == 89"><h3>Libro 4</h3></span>
-          <span v-if="key+1 == 106"><h3>Libro 5</h3></span>
+          <!-- <span v-if="key+1 == 41"><h3>Libro 2</h3></span>
+          <span v-if="key+1 == 72 "><h3>Libro 3</h3></span>
+          <span v-if="key+1 == 89 "><h3>Libro 4</h3></span>
+          <span v-if="key+1 == 106"><h3>Libro 5</h3></span> -->
         </div>
       </div>
+
+      <div class="elencoSalmi" v-else>
+        <div class="single-salmo">
+          <button>
+            <div class="salmo-secondary-info"></div>
+            <b class="salmo-title">Non hai aggiunto salmi nei tuoi preferiti.</b> → 
+            <span class="salmo-description">Per aggiungere un salmo ai favoriti clicca sulla stellina 
+            in alto a destra sui salmi.</span>
+          </button>
+        </div>
+      </div>
+
+
     </main>
   </div>
 </template>
@@ -87,17 +71,19 @@ export default {
   data: function () {
     return {
       salmi: salmiListJson.items,
+      thereIsFavorites: false
     };
   },
 
   created: function() {
-    document.title = 'Tutti i Salmi • elenco dei 150 Salmi Biblici';
-    document.getElementsByTagName('meta')["description"].content = " I salmi contengono un sunto di tutta la dottrina dell'Antico Testamento. I salmisti non parlano che a Dio o di Dio e delle altre cose solo in relazione con Lui. Possiamo dire che è un manuale di pregriera che Dio stesso ha voluto dare ai suoi figli. Servì di preghiera al Redentore, agli Apostoli, a Maria; manuale di preghiera e meditazione.";
+    document.title = 'I Salmi Biblici • elenco dei tuoi salmi preferiti';
+    document.getElementsByTagName('meta')["description"].content = "In questa pagina trovi l'elenco dei salmi che hai aggiunto ai tuoi favoriti.";
   
     // check if favorite exist, if so, update the salmi json
     let favoritePsalms = localStorage.getItem('favoritePsalms');
     if(favoritePsalms) {
       favoritePsalms = favoritePsalms.split(','); // arr like ['2','32']
+      this.thereIsFavorites = true;
 
       for(let el of favoritePsalms) {
         // set salmo to favorite 
@@ -141,7 +127,12 @@ export default {
           let i = fp.indexOf(psalmNumber.toString()); // find the index of the element to remove
           fp.splice(i, 1); // remove 1 element at index 'i'
           localStorage.setItem('favoritePsalms', fp); // remove psalm from favorite in local storage
-          this.salmi[psalmNumber-1].favorite = false; // remove favorite from salmi array 
+          this.salmi[psalmNumber-1].favorite = false; // remove favorite from salmi array
+          
+          // i check if there is fav. salmo. If don't i update a var
+          let check = localStorage.getItem('favoritePsalms');
+          if(!check) 
+            this.thereIsFavorites = false;
         }
       }
       // let favoriteWords = localStorage.getItem('favoriteWords');
