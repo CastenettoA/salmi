@@ -358,3 +358,69 @@
     }
 
   }
+
+  // WORDS OF LIGHT
+  .wordsOfLight_lists {
+
+    &-word {
+      background-color: #fff;
+      box-shadow: rgb(169 174 183 / 50%) 0px 1px 2px 0px;
+      transition: all 0.2s;
+      margin-bottom: 0.6em;
+      border-radius: 6px;
+
+      &:hover {
+        transform: scale(1.04);
+        box-shadow: rgb(169 174 183) 0px 1px 2px 0px;    
+      }
+
+      .image { // to remove a little bottom void space
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image img {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+      }
+  
+      .description {
+        padding: 1em;
+        position: relative;
+
+        .middleBar {
+          position: absolute;
+          top: 0;
+          width: calc(100% - 3.2em);
+          left: 0;
+          padding: 0.3em 1.6em;
+          background-color: #ddd;
+          color: #333;
+          font-size: .8em;
+          font-weight: 500;
+        }
+
+        .title {
+          font-size: 1.4em;
+          font-weight: 800;
+          margin-top: 1em;
+        }
+
+        .verse {
+          font-style: italic;
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      &-word {
+        width: 49%;
+      }
+    }
+  }

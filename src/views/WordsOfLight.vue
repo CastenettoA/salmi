@@ -14,44 +14,31 @@
       <h2>Parole di Luce</h2>
 
 
-      <div class="elencoSalmi" v-if="thereIsFavorites">
-        <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
+      <div class="wordsOfLight_lists">
+        <div class="wordsOfLight_lists-word" v-bind:key="key" v-for="(word, key) in wordsOfLights">
           <!-- <span class="book-nuber" v-if="key+1 == 1 && salmo.favorite"><h3>Libro 1</h3></span> 
           TODO show book number if 1 to 50 and fav=true and isFirstTime ... -->
+          <div class="image">
+            <img src="@/assets/img/wordsoflight/1.jpg" :title="word.title">
+          </div>
 
-          <button v-if="salmo.favorite">
-            <div class="salmo-secondary-info">
-              <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
-              <div class="star" v-on:click="addToFavorites(key+1)" title="Aggiungi-Rimuovi dai preferiti">
-                    <svg v-if="!salmo.favorite" xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="bi bi-star" viewBox="0 0 18 18">
-                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                    </svg>
-
-                    <svg v-else xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#FFAE42" class="bi bi-star-fill" viewBox="0 0 18 18"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></svg>
-                </div>
+          <div class="description">
+            <div class="middleBar">
+              Salmo{{word.from}}
             </div>
-            <b class="salmo-title" v-on:click="goToSalmo(key + 1)">{{ salmo.title }}</b> → 
-            <span class="salmo-description" v-on:click="goToSalmo(key + 1)">{{ salmo.description }}</span>
-          </button>
 
-          <!-- <span v-if="key+1 == 41"><h3>Libro 2</h3></span>
-          <span v-if="key+1 == 72 "><h3>Libro 3</h3></span>
-          <span v-if="key+1 == 89 "><h3>Libro 4</h3></span>
-          <span v-if="key+1 == 106"><h3>Libro 5</h3></span> -->
+            <div class="title">
+              {{word.title}}
+            </div>
+
+            <div class="verse">
+              <!-- todo: finish with FOR  -->
+              {{word.content[0]}} 
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div class="elencoSalmi" v-else>
-        <div class="single-salmo">
-          <button>
-            <div class="salmo-secondary-info"></div>
-            <b class="salmo-title">Non hai aggiunto salmi nei tuoi preferiti.</b> → 
-            <span class="salmo-description">Per aggiungere un salmo ai favoriti clicca sulla stellina 
-            in alto a destra sui salmi.</span>
-          </button>
-        </div>
-      </div>
-
 
     </main>
   </div>
@@ -65,12 +52,14 @@ problema: i salmi che iniziano con un nome Lamed -, nella prima riga manca il no
 
 // @ is an alias to /src
 import salmiListJson from "@/assets/json/salmi.json";
+import wordsListJson from "@/assets/json/wordsOfLight.json";
 
 export default {
   name: "Home",
   data: function () {
     return {
       salmi: salmiListJson.items,
+      wordsOfLights: wordsListJson.items,
       thereIsFavorites: false
     };
   },
