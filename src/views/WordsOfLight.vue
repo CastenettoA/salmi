@@ -15,16 +15,28 @@
 
 
       <div class="wordsOfLight_lists">
+        <!-- 3 milestone 
+        TITOLO . VERSO . RIFERIMENTO . IMMAGINE
+        - 3 salmi
+        - 7 salmi
+        - 14 salmi 
+        - 21 salmi -->
+
+
+
         <div class="wordsOfLight_lists-word" v-bind:key="key" v-for="(word, key) in wordsOfLights">
           <!-- <span class="book-nuber" v-if="key+1 == 1 && salmo.favorite"><h3>Libro 1</h3></span> 
           TODO show book number if 1 to 50 and fav=true and isFirstTime ... -->
           <div class="image">
-            <img src="@/assets/img/wordsoflight/1.jpg" :title="word.title">
+            <div class="today-word" v-if="key == 0">
+              <span>La Parola del Giorno</span>
+            </div>
+            <img :src="require(`@/assets/img/wordsoflight/${key+1}.jpg`)" :title="word.title">
           </div>
 
           <div class="description">
-            <div class="middleBar">
-              Salmo{{word.from}}
+            <div class="middleBar" :title="word.fromSalmoTitle" v-on:click="goToSalmo(word.fromSalmoNumber)" style="cursor: pointer;">
+              Salmo {{word.fromSalmoNumber}} ({{word.fromSalmoNumberVerse}})
             </div>
 
             <div class="title">
