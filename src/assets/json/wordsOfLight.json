@@ -1,29 +1,31 @@
 {
     "items": [
         {
-            "title": "Lui Ti Troverà",
+            "title": "Beato l’uomo",
             "content": [
-                "Beato l’uomo che non segue il consiglio degli empi,\nnon si ferma sulla via dei peccatori\ne non siede in compagnia degli insolenti;"
+                "Beato l’uomo che ha cura del misero: nel giorno della sventura lo libererà il Signore."
             ],
-            "from": "31(4)" ,
-            "bgImg": "www..."
+            "fromSalmoNumber": "41", 
+            "fromSalmoNumberVerse": 2,
+            "fromSalmoTitle": "Preghiera Del Malato Abbandonato"
         },
         {
-            "title": "La Luce",
+            "title": "Ma io canterò",
             "content": [
-                "Per questo gli empi non potranno alzarsi nel giudizio,\nné i peccatori nell’assemblea dei giusti."
+                "Ma io canterò la tua potenza e loderò al mattino la tua bontà. Perché tu sei stato per me un sicuro rifugio e una fortezza nel giorno della mia angoscia."
             ],
-            "from": "122(30)" ,
-            "bgImg": "www..."
+            "fromSalmoNumber": "59", 
+            "fromSalmoNumberVerse": 19,
+            "fromSalmoTitle": "Contro Gli Empi"
         },
-
         {
-            "title": "Verso La Sorgente",
+            "title": "Una Luce",
             "content": [
-                "Servite il Signore con timore\ne gioite con tremore;"
+                "Una luce è sorta per i giusti e gioia per i retti di cuore."
             ],
-            "from": "7(1)" ,
-            "bgImg": "www..."
+            "fromSalmoNumber": "97", 
+            "fromSalmoNumberVerse": 11,
+            "fromSalmoTitle": "Inno A Dio, Signore Della Gloria"
         }
     ]
 }

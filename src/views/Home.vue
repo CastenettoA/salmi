@@ -42,7 +42,7 @@
     <main>
       <h2>Elenco</h2>
       <p style="font-size: 13.6px;">Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. Per leggere il singolo Salmo clicca sul numero o sul titolo corrispondente. Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il numero o il titolo del Salmo. Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti nei Salmi Biblici.</a></p>
-
+      <button v-on:click="getCasualSalmo()">salmo random</button>
 
       <div class="elencoSalmi">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
@@ -124,6 +124,11 @@ export default {
 
     goToWords: function () {
       this.$router.push({ name: "words" });
+    },
+
+    getCasualSalmo: function() { // go to a random salmo page
+      let randomSalmoNum = Math.floor(Math.random()*149)+1; // todo: check if 150 is shown
+      this.$router.push({ name: "salmo", params: { number: randomSalmoNum }});
     },
 
     addToFavorites: function(psalmNumber) { 

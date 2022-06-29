@@ -369,6 +369,8 @@
       margin-bottom: 0.6em;
       border-radius: 6px;
 
+      position: relative;
+
       &:hover {
         transform: scale(1.04);
         box-shadow: rgb(169 174 183) 0px 1px 2px 0px;    
@@ -378,6 +380,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      
+        .today-word {
+          position: absolute;
+          top: 1em;
+          right: 0.8em;
+
+          span {
+            background: #ffd54f;
+            padding: 0.7em 1em;
+            border-radius: 2em;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: .68em;            
+          }
+          
+        }
       }
 
       .image img {
