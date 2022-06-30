@@ -24,11 +24,12 @@
 
 
 
-        <div class="wordsOfLight_lists-word" v-bind:key="key" v-for="(word, key) in wordsOfLights">
+        <div class="wordsOfLight_lists-word" :class="{'today_wordOfLight': today_wordOfLight_is == key }" v-bind:key="key" v-for="(word, key) in wordsOfLights">
           <!-- <span class="book-nuber" v-if="key+1 == 1 && salmo.favorite"><h3>Libro 1</h3></span> 
           TODO show book number if 1 to 50 and fav=true and isFirstTime ... -->
           <div class="image">
-            <div class="today-word" v-if="key == 0">
+            <!-- put the selected word on top -->
+            <div class="today-word" v-if="today_wordOfLight_is == key">
               <span>La Parola del Giorno</span>
             </div>
             <img :src="require(`@/assets/img/wordsoflight/${key+1}.jpg`)" :title="word.title">
@@ -72,7 +73,9 @@ export default {
     return {
       salmi: salmiListJson.items,
       wordsOfLights: wordsListJson.items,
-      thereIsFavorites: false
+      thereIsFavorites: false,
+      today_wordOfLight_is: 0,
+      classN: 'highlight_word'
     };
   },
 
@@ -93,6 +96,25 @@ export default {
           salmo.favorite = true;
         }
       }
+    }
+
+    // check of refresh the WordOfLight of the day
+    let today_wordOfLight = localStorage.getItem('today_wordOfLight');
+    if(today_wordOfLight) {
+      let t = today_wordOfLight.split(';');
+
+      if(parseInt(t[1]) == new Date().getDate()) {
+        this.today_wordOfLight_is = t[0];
+        // no need a new word, the word is of today
+      } else {
+        // ho! the word is old, generate a new onesss
+        this.today_wordOfLight_is = Math.floor((Math.random()*this.wordsOfLights.length)); // get a random wordsoflight index
+        localStorage.setItem('today_wordOfLight', this.today_wordOfLight_is + ';' + new Date().getDate()); // set the word on localStorage
+      }
+    } else {
+      // the word not exist, user first time here. I set che today word of light :D
+      this.today_wordOfLight_is = Math.floor((Math.random()*this.wordsOfLights.length)); // get a random wordsoflight index
+      localStorage.setItem('today_wordOfLight', this.today_wordOfLight_is + ';' + new Date().getDate()); // set the word on localStorage
     }
   },
 

@@ -368,6 +368,11 @@
       transition: all 0.2s;
       margin-bottom: 0.6em;
       border-radius: 6px;
+      order: 2;
+
+      &.today_wordOfLight {
+        order: 1;
+      }
 
       position: relative;
 
