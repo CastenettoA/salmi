@@ -42,7 +42,7 @@
     <main>
       <h2>Elenco</h2>
       <p style="font-size: 13.6px;">Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. Per leggere il singolo Salmo clicca sul numero o sul titolo corrispondente. Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il numero o il titolo del Salmo. Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti nei Salmi Biblici.</a></p>
-      <button v-on:click="getCasualSalmo()">salmo random</button>
+      <!-- <button v-on:click="getCasualSalmo()">salmo random</button> -->
 
       <div class="elencoSalmi">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
