@@ -5,8 +5,8 @@ git commit -m 'automatic deploy baby'
 git push
 
 echo "*** git ok, now BUILD ***"
-npm run build
+# npm run build
 
 echo "*** remove /salmi, copy /salmi ***"
 rm -rf ../castenettoa.com/src/app/salmi
-cp ./dist/app/salmi ../castenettoa.com/src/app/
+# cp -r ./dist/app/salmi ../castenettoa.com/src/app/
