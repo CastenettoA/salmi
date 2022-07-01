@@ -447,3 +447,35 @@
       }
     }
   }
+
+  // BUTTONS
+  .small-button {
+    padding: 0.2em 0.5em;
+    display: flex;
+    align-items: center;
+
+    &.colorfull-light-green {
+      background: linear-gradient(45deg, #619B98, #C0FCF8);
+      transition: all .3s;
+
+      &:hover {
+        box-shadow: 1px 1px 13px inset rgba(0,0,0, .1), 1px 1px 1.5px inset rgba(0,0,0, .25);
+      }
+    }
+
+    svg {
+      margin-right: 0.3em;
+      opacity: .78;
+    }
+  }
+
+  .psalms-option-menu {
+    @media screen and (min-width: 405px) {
+      display: flex;
+      align-items: center;
+    }
+
+    button {
+      margin-right: .4em;
+    }
+  }

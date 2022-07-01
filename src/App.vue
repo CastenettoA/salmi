@@ -80,7 +80,12 @@ export default {
     colorMode(newVal) { // update color mode on user choice
       localStorage.colorMode = newVal;
       this.changeStyleSheet();
+    },
+
+    '$route' () {
+      this.sideNavClose();
     }
+    
   },
 
   methods: {
