@@ -1,14 +1,5 @@
 <template>
   <div class="homepage">    
-    <div class="title">
-      <h1><span class="gradient">Salmi Biblici</span></h1>
-      <span class="desc"
-        ><i
-          >dal greco psalmós, der. di psállō ‘canto con accompagnamento di
-          cetra’</i
-        ></span
-      >
-    </div>
 
     <details>
       <summary>Cos'è il Libro dei Salmi?</summary>
@@ -159,7 +150,7 @@ export default {
        window.scrollTo({ top: 0, behavior: 'auto' });
     },
 
-        scrollToBottom: function() {
+    scrollToBottom: function() {
       const scrollingElement = (document.scrollingElement || document.body);
       scrollingElement.scrollTop = scrollingElement.scrollHeight;
     },

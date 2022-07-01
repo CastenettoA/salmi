@@ -6,7 +6,7 @@
         <div class="sideNav" id="sideNav">
           <div class="sideNav-header">
             <div class="navbar-logo" v-on:click="goHome()">
-              <img src="https://cdn0.iconfinder.com/data/icons/education-869/53/23-512.png">
+              <img src="@/assets/img/logo.png">
               <p>Salmi<span></span>Biblici</p>
             </div>
             <a href="javascript:void(0)" class="sideNav-closeButton" v-on:click="sideNavClose()">&times;</a>
@@ -34,8 +34,8 @@
         <div class="body-overlay" id="bodyOverlay" v-on:click="sideNavClose()"></div>
 
         <div class="navbar-logo" v-on:click="goHome()">
-          <img src="https://cdn0.iconfinder.com/data/icons/education-869/53/23-512.png">
-          <p>Salmi<span></span>Biblici</p>
+          <img src="@/assets/img/logo.png">
+          <h1>Salmi<span></span>Biblici</h1>
         </div>
         <!-- <div class="search-bar"></div> -->
         <!-- <div class="light-mode"></div> -->

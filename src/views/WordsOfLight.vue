@@ -1,14 +1,5 @@
 <template>
   <div class="homepage">    
-    <div class="title">
-      <h1><span class="gradient">Salmi Biblici</span></h1>
-      <span class="desc"
-        ><i
-          >dal greco psalmós, der. di psállō ‘canto con accompagnamento di
-          cetra’</i
-        ></span
-      >
-    </div>
 
     <main>
       <h2>Parole di Luce</h2>
