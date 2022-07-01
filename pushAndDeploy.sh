@@ -6,3 +6,5 @@ git push
 
 echo "*** git ok, now BUILD ***"
 npm run build
+rm -rf ../castenettoa.com/src/app/salmi
+cp ./dist/app/salmi ../castenettoa.com/src/app/
