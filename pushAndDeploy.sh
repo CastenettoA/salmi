@@ -9,4 +9,4 @@ echo "*** git ok, now BUILD ***"
 
 echo "*** remove /salmi, copy /salmi ***"
 rm -rf ../castenettoa.com/src/app/salmi
-# cp -r ./dist/app/salmi ../castenettoa.com/src/app/
+cp -r ./dist/app/salmi ../castenettoa.com/src/app/
