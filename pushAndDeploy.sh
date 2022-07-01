@@ -5,11 +5,15 @@ git commit -m 'automatic deploy baby'
 git push
 
 echo "*** BUILD DIST ***"
-# npm run build
+npm run build
 
 echo "*** MOVE DIST /salmi ***"
-# rm -rf ../castenettoa.com/src/app/salmi
-# cp -r ./dist/app/salmi ../castenettoa.com/src/app/
+rm -rf ../castenettoa.com/src/app/salmi
+cp -r ./dist/app/salmi ../castenettoa.com/src/app/
 
 echo "*** PUSH ca.com ***"
 git -C ../castenettoa.com add .
+git -C ../castenettoa.com commit -m 'automatic deploy from app 'salmi' baby'
+git -C ../castenettoa.com push
+
+echo "*** WELL DONE *** "
