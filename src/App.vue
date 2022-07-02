@@ -17,7 +17,7 @@
               <path fill="currentColor"
                 d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
             </svg>
-            <span>Preferiti</span></router-link>
+            <span>Preferiti <b class="favoriteNumber">{{stateManager.salmi_favorite_count}}</b></span></router-link>
           <router-link to="/parole-di-luce">
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
               <path fill="currentColor"
@@ -36,6 +36,10 @@
         <div class="navbar-logo" v-on:click="goHome()">
           <img src="@/assets/img/logo.png">
           <h1>Salmi<span></span>Biblici</h1>
+
+          <!-- <div class="search-bar">
+            <input v-model="searchString" type="text" v-on:keyup="customSearch()" placeholder="ricerca">
+          </div> -->
         </div>
         <!-- <div class="search-bar"></div> -->
         <!-- <div class="light-mode"></div> -->
@@ -54,12 +58,17 @@
 </template>
 
 <script>
+import salmiListJson from "@/assets/json/salmi.json";
+import {stateManager} from "@/stateManager.js";
 
 export default {
   name: "App",
   data: function () {
     return {
-      colorMode: 'chiaro'
+      colorMode: 'chiaro',
+      searchString: '',
+      salmi: salmiListJson.items,
+      stateManager
     };
   },
 
@@ -73,6 +82,12 @@ export default {
     if (localStorage.colorMode) { // check user preferred color mode
       this.colorMode = localStorage.colorMode;
       this.changeStyleSheet();
+    }
+
+    let favoritePsalms = localStorage.getItem('favoritePsalms');
+    if(favoritePsalms) {
+      favoritePsalms = favoritePsalms.split(','); // arr like ['2','32']
+      this.stateManager.set(favoritePsalms.length);
     }
   },
 
@@ -112,7 +127,14 @@ export default {
       document.getElementById('bodyOverlay').style.height = "0%";
       document.getElementById('bodyOverlay').style.opacity = "0";
       document.body.style.overflow = 'scroll';
-
+    },
+    customSearch: function() {
+      // try lurn
+      // https://www.google.com/search?q=lunrjs+vue&oq=lunrjs+vue&aqs=chrome..69i57j33i10i160l3.2460j0j4&sourceid=chrome&ie=UTF-8
+  // or see --->  // https://en.wikipedia.org/wiki/Full-text_search
+      // 1- if user search only one number, return the single salmo (es: 7 return/go to salmo 7)
+      // 2- if user search a string ("le vie del signore") search this string on the
+      //    'title' and 'description[]' property of the arrays
     }
   },
 };

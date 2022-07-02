@@ -76,6 +76,15 @@
 
     box-shadow: 0px 8px 10px -5px rgb(0 0 0 / 20%), 0px 16px 24px 2px rgb(0 0 0 / 14%), 0px 6px 30px 5px rgb(0 0 0 / 12%);
 
+    .favoriteNumber {
+      font-size: 0.8em;
+      font-weight: bolder;
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 50%;
+      padding: 0.1em 0.5em;
+      color: #888;
+    }
+
     a {
       padding: .6em 1em;
       text-decoration: none;
@@ -335,8 +344,13 @@
           color: #90a4ae;
           cursor: pointer;
 
-          &+b {
-            border: 2px solid orchid;
+          b {
+            font-size: .63em;
+            font-weight: bolder;
+            background-color: rgba(0,0,0, .05);
+            border-radius: 50%;
+            padding: 0.1em 0.32em;
+            color: #888;
           }
         }
 
@@ -464,6 +478,18 @@
         box-shadow: 1px 1px 13px inset rgba(0,0,0, .1), 1px 1px 1.5px inset rgba(0,0,0, .25);
       }
     }
+
+    &.colorfull-red-blue {
+      background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+      transition: all .3s;
+
+      &:hover {
+        box-shadow: 1px 1px 13px inset rgba(0,0,0, .23), 1px 1px 1.5px inset rgba(0,0,0, .25);
+      }
+    }
+
+
+    
 
     svg {
       margin-right: 0.3em;

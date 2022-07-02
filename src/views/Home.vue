@@ -54,7 +54,7 @@
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
           <span class="book-nuber" v-if="key+1 == 1"><h3>Libro 1</h3></span>
 
-          <button>
+          <button :title="salmo.description">
             <div class="salmo-secondary-info">
               <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
               <div class="star" v-on:click="addToFavorites(key+1)" title="Aggiungi-Rimuovi dai preferiti">
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <b class="salmo-title" v-on:click="goToSalmo(key + 1)">{{ salmo.title }}</b> → 
-            <span class="salmo-description" v-on:click="goToSalmo(key + 1)">{{ salmo.description }}</span>
+            <span class="salmo-description" v-on:click="goToSalmo(key + 1)"><b>1.</b> {{ salmo.content[0]}} <b>2.</b> {{ salmo.content[1] }}</span>
           </button>
 
           <span v-if="key+1 == 41"><h3>Libro 2</h3></span>
@@ -96,12 +96,14 @@ problema: i salmi che iniziano con un nome Lamed -, nella prima riga manca il no
 
 // @ is an alias to /src
 import salmiListJson from "@/assets/json/salmi.json";
+import {stateManager} from "@/stateManager.js";
 
 export default {
   name: "Home",
   data: function () {
     return {
       salmi: salmiListJson.items,
+      stateManager
     };
   },
 
@@ -160,30 +162,23 @@ export default {
       if(!favoritePsalms) {
         localStorage.setItem('favoritePsalms', psalmNumber); // add salmo to local storage
         this.salmi[psalmNumber-1].favorite = true; // add favorite to salmi array
+        this.stateManager.salmi_favorite_count = 1;
       } else {
         if(!favoritePsalms.split(',').includes(psalmNumber.toString())) {
           localStorage.setItem('favoritePsalms', favoritePsalms + ',' + psalmNumber);
           this.salmi[psalmNumber-1].favorite = true;
+          this.stateManager.salmi_favorite_count = localStorage.getItem('favoritePsalms').split(',').length;
         } else {
           // current salmo is already favorite. I remove it.
           let fp = favoritePsalms.split(',');  // split the array
           let i = fp.indexOf(psalmNumber.toString()); // find the index of the element to remove
           fp.splice(i, 1); // remove 1 element at index 'i'
           localStorage.setItem('favoritePsalms', fp); // remove psalm from favorite in local storage
-          this.salmi[psalmNumber-1].favorite = false; // remove favorite from salmi array 
+          this.salmi[psalmNumber-1].favorite = false; // remove favorite from salmi array
+          this.stateManager.salmi_favorite_count--;
         }
       }
-      // let favoriteWords = localStorage.getItem('favoriteWords');
-      // if (!favoriteWords) { // se non ci sono faviriti aggiungo la parola ai favoriti
-      //     localStorage.setItem('favoriteWords', word);
-      // } else if (!favoriteWords.split(',').includes(word) ) { // se l'elemento non è già nei favoriti, lo aggiungo. Devo fare toString in quanto la local storage lavora in STRINGHE
-      //    localStorage.setItem('favoriteWords', favoriteWords + ',' + word);
-      // } else if (favoriteWords.split(',').includes(word)) { // se la parola è presente, la rimuovo dai favoriti
-      //    let f = favoriteWords.split(',');
-      //    f.splice(f.indexOf(word), 1);
-      //    localStorage.setItem('favoriteWords', f);
-      // }
-    },
+    }
   },
 
   filters: {
