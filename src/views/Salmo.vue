@@ -23,12 +23,12 @@
           <span v-else>preferito</span>
         </button>
 
-        <!-- <button class="small-button colorfull-red-blue" v-on:click="scrollToBottom()">
+        <button class="small-button colorfull-red-blue" v-on:click="shareSalmo()">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
               <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M14 16V13C10.39 13 7.81 14.43 6 17C6.72 13.33 8.94 9.73 14 9V6L19 11L14 16Z" />
           </svg>
           <span>condividi</span>
-        </button> -->
+        </button>
       </div>
 
       <details v-if="salmi[numeroSalmo - 1].description">
@@ -163,6 +163,22 @@ export default {
           this.stateManager.salmi_favorite_count--;
         }
       }
+    },
+
+    shareSalmo: function() {
+        let salmoTitle = this.salmi[this.numeroSalmo-1].titleWithNumber + ' • ' + this.salmi[this.numeroSalmo-1].title;
+console.log(this.$route.params.number)
+if (navigator.share) { // web share api works!
+          navigator.share({
+            title: salmoTitle,
+            text: "“" + this.salmi[this.numeroSalmo-1].content[0] + "”",
+            url: this.$route.params.number,
+          })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        } else {
+          // no Web Share APi support, fallback!
+        }
     }
   },
 };
