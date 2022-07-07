@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Salmo from '../views/Salmo.vue'
+
 import Penitenziali from '../views/Penitenziali.vue'
+import LibroDeiSalmi from '../views/blog/LibroDeiSalmi.vue'
+
 import Words from '../views/Words.vue'
 import Book from '../views/Book.vue'
 import Home from '../views/Home.vue'
@@ -13,6 +16,8 @@ const routes = [
   { path: '/b/:number', name: 'book', component: Book },
   
   { path: '/penitenziali', name: 'penitenziali', component: Penitenziali },
+  { path: '/blog/libro-dei-salmi', name: 'libroDeiSalmi', component: LibroDeiSalmi },
+
   { path: '/words', name: 'words', component: Words },
   { path: '/favorites', name: 'favorites', component: Favorites },
   { path: '/parole-di-luce', name: 'wordsoflight', component: WordsOfLight },

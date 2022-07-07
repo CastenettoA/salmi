@@ -24,8 +24,8 @@
         </button>
 
         <button class="small-button colorfull-red-blue" v-on:click="shareSalmo()">
-          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M14 16V13C10.39 13 7.81 14.43 6 17C6.72 13.33 8.94 9.73 14 9V6L19 11L14 16Z" />
+          <svg style="width:18px;height:18px" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12S8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5S19.66 2 18 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12S4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.34C15.11 18.55 15.08 18.77 15.08 19C15.08 20.61 16.39 21.91 18 21.91S20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08M18 4C18.55 4 19 4.45 19 5S18.55 6 18 6 17 5.55 17 5 17.45 4 18 4M6 13C5.45 13 5 12.55 5 12S5.45 11 6 11 7 11.45 7 12 6.55 13 6 13M18 20C17.45 20 17 19.55 17 19S17.45 18 18 18 19 18.45 19 19 18.55 20 18 20Z" />
           </svg>
           <span>condividi</span>
         </button>
@@ -166,19 +166,22 @@ export default {
     },
 
     shareSalmo: function() {
-        let salmoTitle = this.salmi[this.numeroSalmo-1].titleWithNumber + ' • ' + this.salmi[this.numeroSalmo-1].title;
-console.log(this.$route.params.number)
-if (navigator.share) { // web share api works!
-          navigator.share({
-            title: salmoTitle,
-            text: "“" + this.salmi[this.numeroSalmo-1].content[0] + "”",
-            url: this.$route.params.number,
-          })
-            .then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
-        } else {
-          // no Web Share APi support, fallback!
-        }
+        let salmoTitle = this.salmi[this.numeroSalmo-1].titleWithNumber + ' • ' + this.salmi[this.numeroSalmo-1].title,
+            salmoContent = "“" + this.salmi[this.numeroSalmo-1].content[0] + ' ' + this.salmi[this.numeroSalmo-1].content[1] + "”";
+
+          if (navigator.share) { // web share api works!
+            navigator.share({
+              title: salmoTitle,
+              text: salmoContent,
+              url: this.$route.params.number,
+            })
+              .then(() => console.log('Successful share'))
+              .catch((error) => console.log('Error sharing', error));
+          } else {
+            // no Web Share APi support, fallback!
+            // copy the salmo (title, first 2 verse and link) (1) and open a tooltip to inform user to share (2)
+            let content = salmoTitle; 
+          }
     }
   },
 };
