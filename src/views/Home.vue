@@ -4,9 +4,8 @@
 
 
     <main>
-      <h2>Elenco</h2>
-      <p style="font-size: 13.6px;">Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. 
-      Per leggere il singolo Salmo clicca sul numero o sul titolo corrispondente. 
+      <h2>I 150 salmi biblici della Bibbia, comodamente accessibili.</h2>
+      <p>Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. 
       Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il
        numero o il titolo del Salmo. 
        Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti 

@@ -5,9 +5,14 @@
 
   body {
     background-color: #f6f8f9;
+    color: #212121;
     padding: 0 1.4em;
     padding-top: 3em;
     font-family: 'Open Sans';
+  }
+
+  html,body,h1,h2,h3,h4,h5,h6,h7,p,b,span,div {
+    color: #212121;
   }
 
   // SIDE-NAV
@@ -190,10 +195,6 @@
     display: none;
   }
 
-  .content {
-    margin-top: 1.8em;
-  }
-
   footer {
     margin-top: 16px;
   }
@@ -203,8 +204,16 @@
     font-style: italic;
 
     span {
-      margin-left: 8px;
+      margin-left: .3em;
     }
+  }
+
+  .content {
+    margin-top: 1em;
+  }
+
+  .homepage main h2 {
+    margin-top: 0;
   }
 
   .prose {
@@ -333,12 +342,14 @@
           width: 100%;
           font-size: .8em;
           font-weight: 700;
-          color: #666;
+          color: #454545;
           text-align: right;
         }
 
         .salmo-title {
           font-weight: 700;
+          font-size: 1.1em;
+
           cursor: pointer;
             &:hover {
               text-decoration: underline;
@@ -490,6 +501,25 @@
 
       &:hover {
         box-shadow: 1px 1px 13px inset rgba(0,0,0, .23), 1px 1px 1.5px inset rgba(0,0,0, .25);
+      }
+    }
+
+    &.colorfull-red-blue-hover {
+      transition: all .3s;
+
+      &:hover {
+      background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+      box-shadow: 1px 1px 13px inset rgba(0,0,0, .23), 1px 1px 1.5px inset rgba(0,0,0, .25);
+      }
+    }
+
+    &.colorfull-yellow-hover {
+      transition: all .3s;
+
+
+      &:hover {
+      box-shadow: 1px 1px 13px inset rgba(0,0,0, .13), 1px 1px 1.5px inset rgba(0,0,0, .15);
+        background-image: linear-gradient(to right top, #f6e942, #f7e442, #f7df42, #f7da42, #f7d542, #f7d041, #f7ca40, #f6c540, #f6bd3f, #f5b53e, #f4ae3e, #f3a63e);
       }
     }
 
