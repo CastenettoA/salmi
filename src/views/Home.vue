@@ -177,6 +177,8 @@ export default {
     },
 
     shareSalmo: function(salmoNumber) {
+        this.$gtag.event('share_salmo', { method: 'Google' }); // send event to gAnalitics
+
         let salmoNLink = Number(salmoNumber)+1;
         let salmoTitle = this.salmi[salmoNumber].titleWithNumber + ' • ' + this.salmi[salmoNumber].title,
             salmoContent = "“" + this.salmi[salmoNumber].content[0] + ' ' + this.salmi[salmoNumber].content[1] + "”";

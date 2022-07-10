@@ -172,5 +172,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/light.css";
 @import "@/assets/scss/main.scss";
 </style>
