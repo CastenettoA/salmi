@@ -29,18 +29,18 @@
         <p>{{ salmi[numeroSalmo - 1].description }}</p>
       </details>
 
-      <br>
-
-      <div
-        class="prose"
-        v-bind:key="key"
-        v-for="(item, key) in salmi[numeroSalmo - 1].content"
-      >
-        <p class="prose-row">
-          <span class="prose-number"
-            ><span>{{ key + 1 }}</span></span
-          >{{ item }}
-        </p>
+      <div class="salmoContent">
+        <div
+          class="prose"
+          v-bind:key="key"
+          v-for="(item, key) in salmi[numeroSalmo - 1].content"
+        >
+          <p class="prose-row">
+            <span class="prose-number"
+              ><span>{{ key + 1 }}</span></span
+            >{{ item }}
+          </p>
+        </div>
       </div>
 
       <small class="copyright-sanpaolo">

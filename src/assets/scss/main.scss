@@ -17,8 +17,10 @@
 
   // SIDE-NAV
   .sideNav-openButton {
+    margin-left: 0.48em;
+    margin-top: 0.4em;
     margin-right: .41em;
-    cursor: pointer;
+    cursor: pointer;    
 
     svg {
       padding: .6em;
@@ -118,7 +120,7 @@
   .navbar {
     position: fixed; z-index: 50;
     margin: 1em;
-    top: 0;
+    top: 1em;
     left: 0;
     width: calc(100% - 2em);
 
@@ -129,14 +131,22 @@
       border-top-left-radius: 0;
     }
 
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+    @media screen and (max-width: 860px) {
+      margin-top: -.5em;
+    }
+
+
     border-radius: 2em;
 
     .navbar-content {
       display: flex;
       align-items: center;
-      padding: 0.3em 0;
+
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      border-radius: 2em;
+      margin-top: 0.5em;
+      padding: 0;
 
       @media screen and (max-width:840px) {
         padding: 0 1.4em;
@@ -182,7 +192,7 @@
           }
 
           input {
-            background-color: #e2e2e2;
+            background-color: #eaeaea;
             padding-left: 3.25em;
             width: 230px;
           }
@@ -394,6 +404,10 @@
           text-align: right;
         }
 
+        a {
+          text-decoration: none;
+        }
+
         .salmo-title {
           font-weight: 700;
           font-size: 1.1em;
@@ -407,6 +421,7 @@
         .salmo-description {
           color: #90a4ae;
           cursor: pointer;
+          font-size: .9;
 
           b {
             font-size: .63em;
@@ -436,7 +451,14 @@
     h1 span.desc {
       color: #666;
     }
+  }
 
+  .salmoContent {
+    background-color: #fff;
+    box-shadow: rgb(169 174 183 / 50%) 0px 1px 2px 0px;
+    border-radius: 6px;
+    padding: 10px 30px;
+    margin-bottom: 1em;
   }
 
   // WORDS OF LIGHT

@@ -43,11 +43,12 @@
           <img src="@/assets/img/logo.png">
           <h1>Salmi<span></span>Biblici</h1>
 
+
           <!-- <div class="search-bar">
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
             </svg>
-            <input v-model="searchString" type="text" v-on:keyup="customSearch()" placeholder="ricerca un salmo...">
+            <input id="hideOnMenuOpen_bug" v-model="searchString" type="text" v-on:keyup="customSearch()" placeholder="Ricerca">
           </div> -->
         </div>
         <!-- <div class="light-mode"></div> -->
@@ -82,6 +83,9 @@ export default {
   computed: {
     readableColorMode() {
       return (this.colorMode == 'chiaro') ? 'tema chiaro' : 'tema scuro';
+    },
+    currentRouteName() {
+      return this.$route.name;
     }
   },
 
@@ -127,15 +131,20 @@ export default {
       document.getElementById('sideNav').style.width = "285px";
       document.getElementById('bodyOverlay').style.height = "100%";
       document.getElementById('bodyOverlay').style.opacity = "1";
+
+      // overlay on the searchabar not work, this is a bug fix
+      // document.getElementById('hideOnMenuOpen_bug').style.opacity = "0.05"; 
       document.body.style.overflow = 'hidden';
     },
     sideNavClose: function () {
       document.getElementById('sideNav').style.width = "0";
       document.getElementById('bodyOverlay').style.height = "0%";
       document.getElementById('bodyOverlay').style.opacity = "0";
+      // document.getElementById('hideOnMenuOpen_bug').style.opacity = "1";
+
       document.body.style.overflow = 'scroll';
     },
-    customSearch: function() { // model: searchString
+    customSearch: function() { // model: this.searchString
     // and if user search Salmo 10? or n/numero 1? libro 3?
 
     let searchString = this.searchString.trim(),
@@ -153,6 +162,8 @@ export default {
       } else if (isInt && searchString > 0 && searchString < 151) {
         // il numero è valido, restituisco il salmo (bug: 01 is working)
         console.log('hey, eccoti il salmo', searchString);
+
+
       } else {
         console.log('stringa troppo corta oppure numbero non valido... no results', searchString);
       }
