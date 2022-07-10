@@ -1,9 +1,7 @@
 <template>
   <div class="homepage">    
 
-
-
-    <main>
+    <header>
       <h2>I 150 salmi biblici della Bibbia, comodamente accessibili.</h2>
       <p>Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. 
       Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il
@@ -28,14 +26,22 @@
           <span>scorri alla fine</span>
         </button>
       </div>
+    </header>
 
+    <main>
       <div class="elencoSalmi">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
-          <span class="book-nuber" v-if="key+1 == 1"><h3>Libro 1</h3></span>
+           <h3 class="book-number" v-if="key+1==1"><router-link to="/b/1">Libro 1</router-link></h3>
 
           <button :title="salmo.description">
             <div class="salmo-secondary-info">
               <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
+
+             <div class="listenAudio" :title="'ascolta salmo numero ' + salmo.titleWithNumber.split('Salmo')[1].trim()">
+                <svg style="width:17.3px;height:17.3px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+                </svg>
+              </div>
 
               <div class="share" :title="'condividi il salmo numero ' + salmo.titleWithNumber.split('Salmo')[1].trim()" v-on:click="shareSalmo(key)">
                 <svg style="width:18px;height:18px" viewBox="0 0 24 24">
@@ -55,10 +61,10 @@
             <span class="salmo-description" v-on:click="goToSalmo(key + 1)"><b>1.</b> {{ salmo.content[0]}} <b>2.</b> {{ salmo.content[1] }}</span>
           </button>
 
-          <span v-if="key+1 == 41"><h3>Libro 2</h3></span>
-          <span v-if="key+1 == 72"><h3>Libro 3</h3></span>
-          <span v-if="key+1 == 89"><h3>Libro 4</h3></span>
-          <span v-if="key+1 == 106"><h3>Libro 5</h3></span>
+           <h3 class="book-number" v-if="key+1==41"><router-link to="/b/2">Libro 2</router-link></h3>
+           <h3 class="book-number" v-if="key+1==72"><router-link to="/b/3">Libro 3</router-link></h3>
+           <h3 class="book-number" v-if="key+1==89"><router-link to="/b/4">Libro 4</router-link></h3>
+           <h3 class="book-number" v-if="key+1==106"><router-link to="/b/5">Libro 5</router-link></h3>
         </div>
       </div>
 

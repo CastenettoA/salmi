@@ -117,12 +117,21 @@
 
   .navbar {
     position: fixed; z-index: 50;
+    margin: 1em;
     top: 0;
     left: 0;
-    width: 100%;
+    width: calc(100% - 2em);
+
+    @media screen and (min-width: 860px) {
+      margin: 0;
+      width: 100%;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
 
     background-color: #fff;
-    box-shadow: rgb(169 174 183 / 50%) 0px 1px 2px 0px;
+    border-bottom: 1px solid #eee;
+    border-radius: 2em;
 
     .navbar-content {
       display: flex;
@@ -153,6 +162,29 @@
           span {
             width: 2px;
             display: inline-block;
+          }
+        }
+
+        .search-bar {
+          margin-left: 2em;
+          margin-top: 0.51em;
+          position: relative;
+
+          @media screen and (max-width: 615px) {
+            display: none;
+          }
+
+          svg {
+            position: absolute;
+            top: 0.6em;
+            left: 0.9em;
+            opacity: .7;
+          }
+
+          input {
+            background-color: #e2e2e2;
+            padding-left: 3.25em;
+            width: 230px;
           }
         }
       }
@@ -206,14 +238,6 @@
     span {
       margin-left: .3em;
     }
-  }
-
-  .content {
-    margin-top: 1em;
-  }
-
-  .homepage main h2 {
-    margin-top: 0;
   }
 
   .prose {
@@ -294,8 +318,21 @@
     }
 
     .elencoSalmi {
-      .book-nuber h3 {
-        color: #868a8d;
+      h3.book-number {
+        margin-bottom: 0.4em;
+        
+        a {
+          color: #868a8d;
+          background: #eee;
+          padding: 0.15em 0.7em;
+          margin-bottom: -.1em;
+          text-decoration: none;
+          border-radius: 2em;
+
+          &:hover {
+            background-color: #ddd;
+          }
+        }
       }
 
       button {
@@ -311,7 +348,7 @@
           display: flex;
           align-items: center;
 
-          .star, .share {
+          .star, .share, .listenAudio  {
             display: flex;
             align-items: center;
 
@@ -328,6 +365,17 @@
              background-color: #d1d1d1;
              cursor: pointer;
              transform: scale(1.3);
+            }
+          }
+
+          .listenAudio {
+            // disabled style
+            opacity: .36;
+            cursor: default !important;
+
+            svg {
+              opacity: .9;
+              padding-right: .1em;
             }
           }
 

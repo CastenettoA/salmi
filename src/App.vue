@@ -24,6 +24,12 @@
                 d="M12,6A6,6 0 0,1 18,12C18,14.22 16.79,16.16 15,17.2V19A1,1 0 0,1 14,20H10A1,1 0 0,1 9,19V17.2C7.21,16.16 6,14.22 6,12A6,6 0 0,1 12,6M14,21V22A1,1 0 0,1 13,23H11A1,1 0 0,1 10,22V21H14M20,11H23V13H20V11M1,11H4V13H1V11M13,1V4H11V1H13M4.92,3.5L7.05,5.64L5.63,7.05L3.5,4.93L4.92,3.5M16.95,5.63L19.07,3.5L20.5,4.93L18.37,7.05L16.95,5.63Z" />
             </svg>
             <span>Parole di Luce</span></router-link>
+
+            <a href="https://paypal.com/paypalme/castenettoa">
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M16 12C18.76 12 21 9.76 21 7S18.76 2 16 2 11 4.24 11 7 13.24 12 16 12M21.45 17.6C21.06 17.2 20.57 17 20 17H13L10.92 16.27L11.25 15.33L13 16H15.8C16.15 16 16.43 15.86 16.66 15.63S17 15.12 17 14.81C17 14.27 16.74 13.9 16.22 13.69L8.95 11H7V20L14 22L22.03 19C22.04 18.47 21.84 18 21.45 17.6M5 11H.984V22H5V11Z" />
+              </svg>
+              <span>Fai una Donazione</span></a>
         </div>
         <span class="sideNav-openButton" v-on:click="sideNavOpen()">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -38,21 +44,22 @@
           <h1>Salmi<span></span>Biblici</h1>
 
           <!-- <div class="search-bar">
-            <input v-model="searchString" type="text" v-on:keyup="customSearch()" placeholder="ricerca">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+            <input v-model="searchString" type="text" v-on:keyup="customSearch()" placeholder="ricerca un salmo...">
           </div> -->
         </div>
-        <!-- <div class="search-bar"></div> -->
         <!-- <div class="light-mode"></div> -->
       </div>
     </nav>
 
-    <div class="content">
-      <router-view></router-view>
-      <footer>Puoi sostenere questo progetto con una <a href="https://paypal.me/pools/c/8bFReaiLUk">donazione</a>.<br>
-        Se vuoi inviarmi un feedback fallo via <a href="mailto:castenetto.andrea@gmail.com">email</a>. <br> <a
-          href="#">Torna su ⬆</a> &bull; <a href="https://castenettoa.com"
-          title="creato da Andrea Castenetto">castenettoa.com</a> </footer>
-    </div>
+    <router-view></router-view>
+    
+    <footer>Puoi sostenere questo progetto con una <a href="https://paypal.me/pools/c/8bFReaiLUk">donazione</a>.<br>
+      Se vuoi inviarmi un feedback fallo via <a href="mailto:castenetto.andrea@gmail.com">email</a>. <br> <a
+        href="#">Torna su ⬆</a> &bull; <a href="https://castenettoa.com"
+        title="creato da Andrea Castenetto">castenettoa.com</a> </footer>
 
   </div>
 </template>
@@ -128,13 +135,37 @@ export default {
       document.getElementById('bodyOverlay').style.opacity = "0";
       document.body.style.overflow = 'scroll';
     },
-    customSearch: function() {
+    customSearch: function() { // model: searchString
+    // and if user search Salmo 10? or n/numero 1? libro 3?
+
+    let searchString = this.searchString.trim(),
+        isInt = false;
+
+    if(!searchString) return;
+    if(this.isInt(searchString)) isInt = true;
+    if(isInt) searchString = parseInt(searchString); // set 01 to 1
+
+      
+      if(!isInt && searchString.trim().length > 2) {
+        //se non è un numero, se la stringa è più lunga di 2 avvio la ricerca
+        console.log('searching...', searchString);
+
+      } else if (isInt && searchString > 0 && searchString < 151) {
+        // il numero è valido, restituisco il salmo (bug: 01 is working)
+        console.log('hey, eccoti il salmo', searchString);
+      } else {
+        console.log('stringa troppo corta oppure numbero non valido... no results', searchString);
+      }
       // try lurn
       // https://www.google.com/search?q=lunrjs+vue&oq=lunrjs+vue&aqs=chrome..69i57j33i10i160l3.2460j0j4&sourceid=chrome&ie=UTF-8
   // or see --->  // https://en.wikipedia.org/wiki/Full-text_search
       // 1- if user search only one number, return the single salmo (es: 7 return/go to salmo 7)
       // 2- if user search a string ("le vie del signore") search this string on the
       //    'title' and 'description[]' property of the arrays
+    },
+
+     isInt: function(value) {
+        return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseInt(value))
     }
   },
 };

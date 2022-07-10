@@ -1,12 +1,6 @@
 <template>
   <main>
     <div class="single-salmo" v-if="bookNumber >= 1 && bookNumber <= 5">
-        <small class="copyright-sanpaolo">
-        <svg style="width:19px;height:19px; opacity: .7;" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-        </svg>
-          <span>Il testo biblico è tratto da <a href="https://www.edizionisanpaolo.it/">LA BIBBIA. Nuova versione dai testi originali</a>, San Paolo Edizioni 2010.</span>
-        </small>
 
        <h1>
         <span class="gradient">Salmi</span>
@@ -35,6 +29,12 @@
         </div>
       </div>
 
+        <small class="copyright-sanpaolo">
+        <svg style="width:19px;height:19px; opacity: .7;" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </svg>
+          <span>Il testo biblico è tratto da <a href="https://www.edizionisanpaolo.it/">LA BIBBIA. Nuova versione dai testi originali</a>, San Paolo Edizioni 2010.</span>
+        </small><br />
 
       <div class="menu-b">
         <button v-on:click="goBack()" :disabled="bookNumber <= 1">
