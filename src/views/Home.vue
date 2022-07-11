@@ -34,6 +34,8 @@
            <h3 class="book-number" v-if="key+1==1"><router-link to="/b/1">Libro 1</router-link></h3>
 
           <button :title="salmo.description">
+            <div class="salmoBigNumber">{{key+1}}</div>
+
             <div class="salmo-secondary-info">
               <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
 

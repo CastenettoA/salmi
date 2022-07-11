@@ -363,6 +363,19 @@
         border-radius: 0.7em;
         margin-bottom: 0.7em;
         padding-bottom: 1em;
+        
+        position: relative;
+        overflow: hidden;
+
+        .salmoBigNumber {
+          position: absolute;
+          top: 0; left: 0;
+          font-size: 10em;
+          font-weight: 800;
+          color: #52a39f;
+          opacity: .07;
+          line-height: 1;
+        }
 
         .salmo-secondary-info {
           display: flex;
