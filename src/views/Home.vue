@@ -34,8 +34,6 @@
            <h3 class="book-number" v-if="key+1==1"><router-link to="/b/1">Libro 1</router-link></h3>
 
           <button :title="salmo.description">
-            <div class="salmoBigNumber">{{key+1}}</div>
-
             <div class="salmo-secondary-info">
               <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
 
@@ -60,10 +58,12 @@
                 </div>
             </div>
             
-          <router-link :to="{ name: 'salmo', params: { number: key+1 }}" :title="'Salmo ' + salmo.titleWithNumber.split('Salmo')[1].trim() + ', ' + salmo.title">
+          <router-link :to="{ name: 'salmo', params: { number: key+1 }}" :title="'Salmo ' + salmo.titleWithNumber.split('Salmo')[1].trim() + ', ' + salmo.title" class="relative">
             <b class="salmo-title">{{ salmo.title }}</b> → 
             <span class="salmo-description"><b>1.</b> {{ salmo.content[0]}} <b>2.</b> {{ salmo.content[1] }}</span>
           </router-link>
+
+            <div class="salmoBigNumber">{{key+1}}</div>
           </button>
 
            <h3 class="book-number" v-if="key+1==41"><router-link to="/b/2">Libro 2</router-link></h3>

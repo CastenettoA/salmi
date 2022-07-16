@@ -100,7 +100,14 @@ export default {
       favoritePsalms = favoritePsalms.split(','); // arr like ['2','32']
       this.stateManager.set(favoritePsalms.length);
     }
-  },
+    // 'https://castenettoa.com/app/salmi/s/1',
+    // 'https://castenettoa.com/app/salmi/s/2',
+    let url = '';
+    for(let x=1; x <= 150; x++) {
+       url = url + " 'https://castenettoa.com/app/salmi/s/" + x + "',\n";
+    }
+          console.log(url);
+},
 
   watch: {
     colorMode(newVal) { // update color mode on user choice
