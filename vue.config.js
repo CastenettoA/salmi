@@ -210,16 +210,3 @@ module.exports = defineConfig({
     }
   }
 })
-
-// vue.config.js
-
-module.exports = {
-  pluginOptions: {
-    sitemap: {
-      urls: [
-        'https://example.com/',
-        'https://example.com/about',
-      ]
-    }
-  }
-}
