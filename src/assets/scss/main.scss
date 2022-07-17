@@ -640,3 +640,53 @@
     position: relative;
     z-index: 1;
   }
+
+  /*homepagr submenu (showCompactView) andcollapsed logic*/
+  .homepage_subMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .collapseView {
+      background-color: #d0cfcf;
+      transition: all .3s;
+      border-radius: 6px;
+
+      &:hover {
+        cursor: pointer;
+        background: #9b9b9b;
+      }
+
+      svg {
+
+      }
+    }
+  }
+
+  .elencoSalmi_collapsed {
+    .elencoSalmi_collapsedContainer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .single-salmo {
+      width: 13%;
+
+      @media screen and (min-width: 700px) {
+        width: 9.5%;
+      }
+      
+      button {
+        padding: 0.5em 0em;
+        text-align: center;
+        margin-bottom: 0.3em;
+      }
+    }
+
+    .homepage_subMenu {
+      justify-content: end;
+      margin-bottom: 1em;
+      margin-top: .8em;
+    }
+  }

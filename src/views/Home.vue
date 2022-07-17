@@ -1,16 +1,16 @@
 <template>
-  <div class="homepage">    
+  <div class="homepage">
 
     <header>
       <h2>I 150 salmi biblici della Bibbia, comodamente accessibili.</h2>
-      <p>Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici. 
+      <p>Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici.
       Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il
-       numero o il titolo del Salmo. 
-       Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti 
-       nei Salmi Biblici</a> o qui per conoscere di più <a v-on:click="goToBlog1()" style="cursor: pointer;">sul libro dei salmi e i suoi 5 libri</a>.   
-       
+       numero o il titolo del Salmo.
+       Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti
+       nei Salmi Biblici</a> o qui per conoscere di più <a v-on:click="goToBlog1()" style="cursor: pointer;">sul libro dei salmi e i suoi 5 libri</a>.
+
        </p>
-      
+
       <div class="psalms-option-menu">
         <button class="small-button colorfull-light-green" v-on:click="getCasualSalmo()">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24"> <!-- dice icon -->
@@ -29,13 +29,21 @@
     </header>
 
     <main>
-      <div class="elencoSalmi">
+      <div class="elencoSalmi" v-if="!isViewCollapsed">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
+        <div class="homepage_subMenu">
            <h3 class="book-number" v-if="key+1==1"><router-link to="/b/1">Libro 1</router-link></h3>
+           <div class="collapseView small-button" v-if="key+1==1" v-on:click="collapseView()">
+            <span>vista breve</span>
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M19.5,3.09L20.91,4.5L16.41,9H20V11H13V4H15V7.59L19.5,3.09M20.91,19.5L19.5,20.91L15,16.41V20H13V13H20V15H16.41L20.91,19.5M4.5,3.09L9,7.59V4H11V11H4V9H7.59L3.09,4.5L4.5,3.09M3.09,19.5L7.59,15H4V13H11V20H9V16.41L4.5,20.91L3.09,19.5Z" />
+              </svg>
+            </div>
+        </div>
 
           <button :title="salmo.description">
             <div class="salmo-secondary-info">
-              <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span> 
+              <span class="salmo-number">salmo {{ salmo.titleWithNumber.split('Salmo')[1].trim() }}</span>
 
              <div class="listenAudio" :title="'ascolta salmo numero ' + salmo.titleWithNumber.split('Salmo')[1].trim()">
                 <svg style="width:17.3px;height:17.3px" viewBox="0 0 24 24">
@@ -57,9 +65,9 @@
                     <svg v-else xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#FFAE42" class="bi bi-star-fill" viewBox="0 0 18 18"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></svg>
                 </div>
             </div>
-            
+
           <router-link :to="{ name: 'salmo', params: { number: key+1 }}" :title="'Salmo ' + salmo.titleWithNumber.split('Salmo')[1].trim() + ', ' + salmo.title" class="relative">
-            <b class="salmo-title">{{ salmo.title }}</b> → 
+            <b class="salmo-title">{{ salmo.title }}</b> →
             <span class="salmo-description"><b>1.</b> {{ salmo.content[0]}} <b>2.</b> {{ salmo.content[1] }}</span>
           </router-link>
 
@@ -71,6 +79,36 @@
            <h3 class="book-number" v-if="key+1==89"><router-link to="/b/4">Libro 4</router-link></h3>
            <h3 class="book-number" v-if="key+1==106"><router-link to="/b/5">Libro 5</router-link></h3>
         </div>
+      </div>
+
+      <div class="elencoSalmi elencoSalmi_collapsed" v-if="isViewCollapsed">
+        <div class="homepage_subMenu">
+           <div class="collapseView small-button" v-on:click="collapseView()">
+            <span>vista breve</span>
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M19.5,3.09L20.91,4.5L16.41,9H20V11H13V4H15V7.59L19.5,3.09M20.91,19.5L19.5,20.91L15,16.41V20H13V13H20V15H16.41L20.91,19.5M4.5,3.09L9,7.59V4H11V11H4V9H7.59L3.09,4.5L4.5,3.09M3.09,19.5L7.59,15H4V13H11V20H9V16.41L4.5,20.91L3.09,19.5Z" />
+              </svg>
+            </div>
+        </div>
+
+        <div class="elencoSalmi_collapsedContainer">
+
+           <!-- <h3 class="book-number" v-if="key+1==1"><router-link to="/b/1">Libro 1</router-link></h3> -->
+        <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
+
+          <button :title="salmo.description">
+            <router-link :to="{ name: 'salmo', params: { number: key+1 }}" :title="'Salmo ' + salmo.titleWithNumber.split('Salmo')[1].trim() + ', ' + salmo.title" class="relative">
+              <b class="salmo-title">{{key+1}}</b>
+            </router-link>
+          </button>
+
+           <!-- <h3 class="book-number" v-if="key+1==41"><router-link to="/b/2">Libro 2</router-link></h3>
+           <h3 class="book-number" v-if="key+1==72"><router-link to="/b/3">Libro 3</router-link></h3>
+           <h3 class="book-number" v-if="key+1==89"><router-link to="/b/4">Libro 4</router-link></h3>
+           <h3 class="book-number" v-if="key+1==106"><router-link to="/b/5">Libro 5</router-link></h3> -->
+        </div>
+        </div>
+
       </div>
 
       <div class="psalms-option-menu">
@@ -100,21 +138,22 @@ export default {
   data: function () {
     return {
       salmi: salmiListJson.items,
-      stateManager
+      stateManager,
+      isViewCollapsed: false // todo: maybe in future make with local storage
     };
   },
 
   created: function() {
     document.title = 'Tutti i Salmi • elenco dei 150 Salmi Biblici';
     document.getElementsByTagName('meta')["description"].content = " I salmi contengono un sunto di tutta la dottrina dell'Antico Testamento. I salmisti non parlano che a Dio o di Dio e delle altre cose solo in relazione con Lui. Possiamo dire che è un manuale di pregriera che Dio stesso ha voluto dare ai suoi figli. Servì di preghiera al Redentore, agli Apostoli, a Maria; manuale di preghiera e meditazione.";
-  
+
     // check if favorite exist, if so, update the salmi json
     let favoritePsalms = localStorage.getItem('favoritePsalms');
     if(favoritePsalms) {
       favoritePsalms = favoritePsalms.split(','); // arr like ['2','32']
 
       for(let el of favoritePsalms) {
-        // set salmo to favorite 
+        // set salmo to favorite
         let salmo = this.salmi[el-1];
         if(salmo) {
           salmo.favorite = true;
@@ -158,7 +197,7 @@ export default {
       scrollingElement.scrollTop = scrollingElement.scrollHeight;
     },
 
-    addToFavorites: function(psalmNumber) { 
+    addToFavorites: function(psalmNumber) {
       let favoritePsalms = localStorage.getItem('favoritePsalms'); // [1,2,5]
       if(!favoritePsalms) {
         localStorage.setItem('favoritePsalms', psalmNumber); // add salmo to local storage
@@ -198,8 +237,13 @@ export default {
               .catch((error) => console.log('Error sharing', error));
           } else {
             // no Web Share APi support, fallback with vue3-clipboard..!
-            window.prompt("Copia negli appunti con Ctrl+C, Enter e poi condividi il salmo dove preferisci.", salmoTitle + " (https://castenettoa.com/app/salmi/s/" + salmoNLink + ") " + salmoContent); 
+            window.prompt("Copia negli appunti con Ctrl+C, Enter e poi condividi il salmo dove preferisci.", salmoTitle + " (https://castenettoa.com/app/salmi/s/" + salmoNLink + ") " + salmoContent);
           }
+    },
+
+    collapseView: function() {
+      // show-hide the collapseView
+      this.isViewCollapsed = !this.isViewCollapsed;
     }
 
 
