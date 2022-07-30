@@ -199,7 +199,7 @@
           }
         }
 
-        .search-bar-mobileIcon {
+        .search-bar-mobileIcon, .search-bar-mobileCloseIcon {
           display: none;
           cursor: pointer;
           width: 40px;
@@ -253,13 +253,17 @@
             }
           }
 
-          .search-bar-mobileIcon {
+          .search-bar-mobileIcon, .search-bar-mobileCloseIcon {
             display: flex;
             justify-content: center;
             align-items: center;
 
             &.notActive {
               display: none;
+            }
+
+            &.active {
+              display: flex;
             }
           }
         }

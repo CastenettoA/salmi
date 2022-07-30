@@ -48,6 +48,12 @@
             </svg>
           </div>
 
+          <div class="search-bar-mobileCloseIcon" alt="clicca per chiudere la ricerca" @click="searchBarStatus[0].isSearchInputActive=false" :class="{ active: searchBarStatus[0].isSearchInputActive, notActive: !searchBarStatus[0].isSearchInputActive }">
+           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
+            </svg>
+          </div>
+
           <div class="search-bar" :class="{ active: searchBarStatus[0].isSearchInputActive }">
             <input id="hideOnMenuOpen_bug" v-model="searchString" ref="searchInputRef" type="text"
                v-on:keyup="customSearch()"
@@ -333,7 +339,7 @@ export default {
       }
     },
     focusOutFromSearchBar: function(e) {
-         this.searchBarStatus[0].isSearchInputActive = false;
+        //  this.searchBarStatus[0].isSearchInputActive = false;
     },
     isInt: function(value) {
         return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseInt(value))
