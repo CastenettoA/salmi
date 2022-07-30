@@ -3,6 +3,7 @@ import Salmo from '../views/Salmo.vue'
 
 import Penitenziali from '../views/Penitenziali.vue'
 import LibroDeiSalmi from '../views/blog/LibroDeiSalmi.vue'
+import changelog from '../views/blog/changelog.vue'
 
 import Words from '../views/Words.vue'
 import Book from '../views/Book.vue'
@@ -17,6 +18,7 @@ const routes = [
   
   { path: '/penitenziali', name: 'penitenziali', component: Penitenziali },
   { path: '/blog/libro-dei-salmi', name: 'libroDeiSalmi', component: LibroDeiSalmi },
+  { path: '/blog/changelog', name: 'changelog', component: changelog },
 
   { path: '/words', name: 'words', component: Words },
   { path: '/favorites', name: 'favorites', component: Favorites },

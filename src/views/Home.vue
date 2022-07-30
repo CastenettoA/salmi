@@ -1,13 +1,10 @@
 <template>
   <div class="homepage">
 
-    <header>
+    <header :class="headerBg">
       <h2>I 150 salmi biblici della Bibbia, comodamente accessibili.</h2>
       <p>Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici.
-      Se vuoi effettuare una <b>ricerca</b> puoi farlo utilizzando la ricerca del tuo Browser Web ed inserire il
-       numero o il titolo del Salmo.
-       Clicca qui per scoprire le <a v-on:click="goToWords()" style="cursor: pointer;">parole più ricorrenti
-       nei Salmi Biblici</a> o qui per conoscere di più <a v-on:click="goToBlog1()" style="cursor: pointer;">sul libro dei salmi e i suoi 5 libri</a>.
+       Clicca qui per scoprire le <router-link to="/words">parole più ricorrenti nei Salmi Biblici</router-link> o qui per conoscere di più <router-link to="/blog/libro-dei-salmi">sul libro dei salmi e i suoi 5 libri</router-link>.
 
        </p>
 
@@ -19,7 +16,7 @@
           <span>mi sento fortunato</span>
         </button>
 
-        <button class="small-button" v-on:click="scrollToBottom()">
+        <button class="small-button color-white-light" v-on:click="scrollToBottom()">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
               <path fill="currentColor" d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M12,17L17,12H14V8H10V12H7L12,17Z" />
           </svg>
@@ -92,15 +89,14 @@
         </div>
 
         <div class="elencoSalmi_collapsedContainer">
-
+          <!-- todo: add start to add to fav -->
            <!-- <h3 class="book-number" v-if="key+1==1"><router-link to="/b/1">Libro 1</router-link></h3> -->
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
-
-          <button :title="salmo.description">
             <router-link :to="{ name: 'salmo', params: { number: key+1 }}" :title="'Salmo ' + salmo.titleWithNumber.split('Salmo')[1].trim() + ', ' + salmo.title" class="relative">
-              <b class="salmo-title">{{key+1}}</b>
+              <button :title="salmo.description">
+                  <b class="salmo-title">{{key+1}}</b>
+              </button>
             </router-link>
-          </button>
 
            <!-- <h3 class="book-number" v-if="key+1==41"><router-link to="/b/2">Libro 2</router-link></h3>
            <h3 class="book-number" v-if="key+1==72"><router-link to="/b/3">Libro 3</router-link></h3>
@@ -139,8 +135,14 @@ export default {
     return {
       salmi: salmiListJson.items,
       stateManager,
-      isViewCollapsed: false // todo: maybe in future make with local storage
-    };
+      isViewCollapsed: false, // todo: maybe in future make with local storage
+      headerBg: 'bg1'
+   };
+  },
+
+  mounted: function() {
+    // set <header> background class
+    this.headerBg = this.getHeaderRandomClass();
   },
 
   created: function() {
@@ -163,6 +165,9 @@ export default {
   },
 
   methods: {
+    getHeaderRandomClass() {
+      return 'bg' +  ((Math.floor(Math.random() * 10)) + 1);
+    },
     goToSalmo: function (n) {
       this.$router.push({ name: "salmo", params: { number: n } });
     },
