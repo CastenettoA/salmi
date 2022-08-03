@@ -5,5 +5,7 @@ export const stateManager = reactive({
     salmi_favorite_count: 0,
     set(n) {
         this.salmi_favorite_count = n;
-    }
+    },
+
+    animationEnabled: false
 });

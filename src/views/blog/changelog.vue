@@ -16,6 +16,11 @@
 
       <div class="changelogContent">
         <div class="changelogEntry">
+          <h2>2 Agosto, 2022</h2>
+          <p>&#8226; Aggiunte animazioni alla web app.</p>
+        </div>
+
+        <div class="changelogEntry">
           <h2>1 Agosto, 2022</h2>
           <p>&#8226; Aggiunta la funzionalità di ricerca. Ora è possibile cercare nei salmi e nel loro contenuto.</p>
           <p>&#8226; Miglioramento dell'aspetto estetico della parte alta dell'applicazione. (l'header)</p>
@@ -88,5 +93,15 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
+  h2 {
+    font-size: 1.2em;
+    font-weight: 700;
+    opacity: .8;
+  }
+
+  .changelogEntry p {
+    margin-bottom: 0;
+    margin-top: 0.4em;
+  }
 </style>

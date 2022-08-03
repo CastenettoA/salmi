@@ -1,18 +1,13 @@
 <template>
   <main>
     <div class="single-salmo">
-        <h1>
-        <span class="gradient">Cos'è il Libro dei Salmi?</span>
-        <!-- <span class="desc"
-          > &bull; Il Libro Dei Salmi</span
-        > -->
-      </h1>
-
-      <p>
-        Il Libro dei Salmi è un testo contenuto nella Bibbia che racchiude al
+      <header :class="[{ animationShow_v2: stateManager.animationEnabled}, 'bgSea' ]">
+        <h1>Cos'è il Libro dei Salmi?</h1>
+          <p>Il Libro dei Salmi è un testo contenuto nella Bibbia che racchiude al
         suo interno 150 Salmi, delle composizioni poetiche sacre scritte da vari
-        autori (principalmente dal re Davide).
-      </p>
+        autori (principalmente dal re Davide).</p>
+      </header>
+
       <p>
         Possiamo dire che contengono un sunto di tutta la dottrina dell'Antico
         Testamento. Sono considerati un manuale di preghiera e meditazione che
@@ -23,14 +18,16 @@
         Il salterio è diviso in 5 parti, in analogia con il Pentateuco, e ciascuna parte termina con una benedizione o dossologia
       </p>
 
-      <button v-on:click="goToBook(1)">📕 Libro 1 →</button>
-      <button v-on:click="goToBook(2)">📕 Libro 2 →</button>
-      <button v-on:click="goToBook(3)">📕 Libro 3 →</button>
-      <button v-on:click="goToBook(4)">📕 Libro 4 →</button>
-      <button v-on:click="goToBook(5)">📕 Libro 5 →</button>
+      <div class="elencoSalmi">
+      <button v-on:click="goToBook(1)" style="cursor: pointer;">📕 Libro 1 →</button>
+      <button v-on:click="goToBook(2)" style="cursor: pointer;">📕 Libro 2 →</button>
+      <button v-on:click="goToBook(3)" style="cursor: pointer;">📕 Libro 3 →</button>
+      <button v-on:click="goToBook(4)" style="cursor: pointer;">📕 Libro 4 →</button>
+      <button v-on:click="goToBook(5)" style="cursor: pointer;">📕 Libro 5 →</button>
       <hr>
-      <button v-on:click="goToPenitenziali()">📕 I 7 Salmi Penitenziali →</button>
-      <button v-on:click="goToWords()">📔 Le parole più ricorrenti nei Salmi →</button>
+      <button v-on:click="goToPenitenziali()" style="cursor: pointer;">📕 I 7 Salmi Penitenziali →</button>
+      <button v-on:click="goToWords()" style="cursor: pointer;">📔 Le parole più ricorrenti nei Salmi →</button>
+      </div>
 
       <!-- https://www.vatican.va/roman_curia/congregations/cfaith/pcb_documents/rc_con_cfaith_doc_19100501_psalmorum_it.html -->
       <br />
@@ -47,11 +44,14 @@
 
 <script>
 import salmi from "@/assets/json/salmi.json";
+import {stateManager} from "@/stateManager.js";
+
 
 export default {
   data: function () {
     return {
       salmi: salmi.items,
+      stateManager
     };
   },
   created: function(){

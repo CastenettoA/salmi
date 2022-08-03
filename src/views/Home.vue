@@ -1,8 +1,8 @@
 <template>
   <div class="homepage">
 
-    <header :class="headerBg">
-      <h2>I 150 salmi biblici della Bibbia, comodamente accessibili.</h2>
+    <header :class="[{ animationShow_v2: stateManager.animationEnabled}, headerBg ]">
+      <h1>I 150 salmi biblici della Bibbia, comodamente accessibili.</h1>
       <p>Qui sotto trovi l'elenco ordinato di tutti i 150 Salmi Biblici.
        Clicca qui per scoprire le <router-link to="/words">parole più ricorrenti nei Salmi Biblici</router-link> o qui per conoscere di più <router-link to="/blog/libro-dei-salmi">sul libro dei salmi e i suoi 5 libri</router-link>.
 
@@ -23,9 +23,10 @@
           <span>scorri alla fine</span>
         </button>
       </div>
+
     </header>
 
-    <main>
+    <main :class="[{ animationShow_v3: stateManager.animationEnabled}, 'sList' ]">
       <div class="elencoSalmi" v-if="!isViewCollapsed">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
         <div class="homepage_subMenu">

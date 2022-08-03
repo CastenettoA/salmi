@@ -1,9 +1,10 @@
 <template>
   <div id="app" v-cloak>
-    <nav class="navbar">
-      <div class="navbar-content showSearchBarMobile">
 
-        <div class="sideNav" id="sideNav">
+    <nav class="navbar">
+      <div class="body-overlay" id="bodyOverlay" v-on:click="sideNavClose()"></div> <!-- make <body> dark for side menu, click on close -->
+
+      <div class="sideNav" id="sideNav">
           <div class="sideNav-header">
             <div class="navbar-logo">
               <img class="logo" src="@/assets/img/logo.png" @click="goHome">
@@ -12,35 +13,36 @@
             <a href="javascript:void(0)" class="sideNav-closeButton" v-on:click="sideNavClose()">&times;</a>
           </div>
 
-            <router-link to="/favorites">
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-            </svg>
-            <span>Preferiti <b class="favoriteNumber">{{stateManager.salmi_favorite_count}}</b></span></router-link>
-          <router-link to="/parole-di-luce">
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M12,6A6,6 0 0,1 18,12C18,14.22 16.79,16.16 15,17.2V19A1,1 0 0,1 14,20H10A1,1 0 0,1 9,19V17.2C7.21,16.16 6,14.22 6,12A6,6 0 0,1 12,6M14,21V22A1,1 0 0,1 13,23H11A1,1 0 0,1 10,22V21H14M20,11H23V13H20V11M1,11H4V13H1V11M13,1V4H11V1H13M4.92,3.5L7.05,5.64L5.63,7.05L3.5,4.93L4.92,3.5M16.95,5.63L19.07,3.5L20.5,4.93L18.37,7.05L16.95,5.63Z" />
-            </svg>
-            <span>Parole di Luce</span></router-link>
+          <router-link to="/favorites">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+          </svg>
+          <span>Preferiti <b class="favoriteNumber">{{stateManager.salmi_favorite_count}}</b></span></router-link>
+        <router-link to="/parole-di-luce">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M12,6A6,6 0 0,1 18,12C18,14.22 16.79,16.16 15,17.2V19A1,1 0 0,1 14,20H10A1,1 0 0,1 9,19V17.2C7.21,16.16 6,14.22 6,12A6,6 0 0,1 12,6M14,21V22A1,1 0 0,1 13,23H11A1,1 0 0,1 10,22V21H14M20,11H23V13H20V11M1,11H4V13H1V11M13,1V4H11V1H13M4.92,3.5L7.05,5.64L5.63,7.05L3.5,4.93L4.92,3.5M16.95,5.63L19.07,3.5L20.5,4.93L18.37,7.05L16.95,5.63Z" />
+          </svg>
+          <span>Parole di Luce</span></router-link>
 
-            <a href="https://paypal.com/paypalme/castenettoa">
-              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M16 12C18.76 12 21 9.76 21 7S18.76 2 16 2 11 4.24 11 7 13.24 12 16 12M21.45 17.6C21.06 17.2 20.57 17 20 17H13L10.92 16.27L11.25 15.33L13 16H15.8C16.15 16 16.43 15.86 16.66 15.63S17 15.12 17 14.81C17 14.27 16.74 13.9 16.22 13.69L8.95 11H7V20L14 22L22.03 19C22.04 18.47 21.84 18 21.45 17.6M5 11H.984V22H5V11Z" />
-              </svg>
-              <span>Fai una Donazione</span></a>
-        </div>
+          <a href="https://paypal.com/paypalme/castenettoa">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M16 12C18.76 12 21 9.76 21 7S18.76 2 16 2 11 4.24 11 7 13.24 12 16 12M21.45 17.6C21.06 17.2 20.57 17 20 17H13L10.92 16.27L11.25 15.33L13 16H15.8C16.15 16 16.43 15.86 16.66 15.63S17 15.12 17 14.81C17 14.27 16.74 13.9 16.22 13.69L8.95 11H7V20L14 22L22.03 19C22.04 18.47 21.84 18 21.45 17.6M5 11H.984V22H5V11Z" />
+            </svg>
+            <span>Fai una Donazione</span></a>
+      </div>
+
+      <div :class="[{ animationShow_v1: stateManager.animationEnabled }, 'navbar-content', 'showSearchBarMobile']">
         <span class="sideNav-openButton" v-on:click="sideNavOpen()">
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
           </svg>
         </span>
-        <div class="body-overlay" id="bodyOverlay" v-on:click="sideNavClose()"></div>
 
         <div class="navbar-logo">
-          <img src="@/assets/img/logo.png" @click="goHome">
-          <h1 @click="goHome" :class="{ notActive: searchBarStatus[0].isSearchInputActive }">Salmi<span></span>Biblici</h1>
+          <img src="@/assets/img/logo.png" @click="goHome" :class="[{ animationShow_logo: stateManager.animationEnabled }]">
+          <h1 @click="goHome" :class="[{ animationShow_logo: stateManager.animationEnabled }, { notActive: searchBarStatus[0].isSearchInputActive }]">Salmi<span></span>Biblici</h1>
 
           <div class="search-bar-mobileIcon" alt="clicca per cercare un salmo" @click="searchBarStatus[0].isSearchInputActive=true; setFocusOnSearch()" :class="{ notActive: searchBarStatus[0].isSearchInputActive }">
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -49,7 +51,7 @@
           </div>
 
           <div class="search-bar-mobileCloseIcon" alt="clicca per chiudere la ricerca" @click="searchBarStatus[0].isSearchInputActive=false" :class="{ active: searchBarStatus[0].isSearchInputActive, notActive: !searchBarStatus[0].isSearchInputActive }">
-           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+           <svg style="width:20px;height:20px" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
             </svg>
           </div>
@@ -140,6 +142,9 @@ export default {
   },
 
   mounted() {
+    // start webapp animation (fade-in)
+    this.stateManager.animationEnabled=!this.stateManager.animationEnabled;
+
     document.addEventListener('click', this.onDocumentClick);
 
     if (localStorage.colorMode) { // check user preferred color mode
@@ -175,6 +180,9 @@ export default {
       this.searchBarStatus[0].showSearchResults = false;
       this.displayText = this.defaultDisplayText;
       this.searchString = '';
+      this.searchBarStatus[0].isSearchInputActive = false;
+
+
       this.$router.push({ name: "salmo", params: { number: n } });
     },
     onDocumentClick: function(e) { 

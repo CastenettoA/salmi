@@ -1,33 +1,28 @@
 <template>
   <main>
     <div class="single-salmo">
-
-      <h1>
-        <span class="gradient">Salmi</span>
-        <span class="desc"
-          > &bull; Le parole più frequenti nei salmi biblici</span
-        >
-      </h1>
-
-      <p>Breve statistica delle parole più ricorrenti all'interno dei Salmi Biblici.</p>
+      <header :class="[{ animationShow_v2: stateManager.animationEnabled}, 'bgSea' ]">
+      <h1>Salmi &bull; Le parole più frequenti nei salmi biblici</h1>
+        <p>Breve statistica delle parole più ricorrenti all'interno dei Salmi Biblici.</p>
+    </header>
 
       <div class="elencoSalmi">
           <!-- improve this search only in content @todo -->
-          <div><button><b>Signore</b> • 796 volte</button></div>
-          <div><button><b>Dio</b> • 565 volte</button></div>
-          <div><button><b>Terra</b> • 192 volte</button></div>
-          <div><button><b>Cuore</b> • 136 volte</button></div>
-          <div><button><b>Anima</b> • 101 volte</button></div>
-          <div><button><b>Israele</b> • 96 volte</button></div>
-          <div><button><b>Nemici</b> • 96 volte</button></div>
-          <div><button><b>Giustizia</b> • 96 volte</button></div>
-          <div><button><b>Uomo</b> • 87 volte</button></div>
-          <div><button><b>Amore</b> • 86 volte</button></div>
-          <div><button><b>Salvezza</b> • 83 volte</button></div>
-          <div><button><b>Eterno</b> • 71 volte</button></div>
-          <div><button><b>Cieli</b> • 70 volte</button></div>
-          <div><button><b>Bontà</b> • 54 volte</button></div>
-          <div><button><b>Fedeltà</b> • 48 volte</button></div>
+          <div><button><b class="salmo-title">Signore</b> • <span class="salmo-description">796 volte</span></button></div>
+          <div><button><b class="salmo-title">Dio</b> •  <span class="salmo-description">565 volte</span></button></div>
+          <div><button><b class="salmo-title">Terra</b> •  <span class="salmo-description">192 volte</span></button></div>
+          <div><button><b class="salmo-title">Cuore</b> •  <span class="salmo-description">136 volte</span></button></div>
+          <div><button><b class="salmo-title">Anima</b> •  <span class="salmo-description">101 volte</span></button></div>
+          <div><button><b class="salmo-title">Israele</b> •  <span class="salmo-description">96 volte</span></button></div>
+          <div><button><b class="salmo-title">Nemici</b> •  <span class="salmo-description">96 volte</span></button></div>
+          <div><button><b class="salmo-title">Giustizia</b> •  <span class="salmo-description">96 volte</span></button></div>
+          <div><button><b class="salmo-title">Uomo</b> •  <span class="salmo-description">87 volte</span></button></div>
+          <div><button><b class="salmo-title">Amore</b> •  <span class="salmo-description">86 volte</span></button></div>
+          <div><button><b class="salmo-title">Salvezza</b> •  <span class="salmo-description">83 volte</span></button></div>
+          <div><button><b class="salmo-title">Eterno</b> •  <span class="salmo-description">71 volte</span></button></div>
+          <div><button><b class="salmo-title">Cieli</b> •  <span class="salmo-description">70 volte</span></button></div>
+          <div><button><b class="salmo-title">Bontà</b> •  <span class="salmo-description">54 volte</span></button></div>
+          <div><button><b class="salmo-title">Fedeltà</b> •  <span class="salmo-description">48 volte</span></button></div>
       </div>
 
               <small class="copyright-sanpaolo">
@@ -44,11 +39,15 @@
 
 <script>
 import salmi from "@/assets/json/salmi.json";
+import {stateManager} from "@/stateManager.js";
+
 
 export default {
   data: function () {
     return {
       salmi: salmi.items,
+      headerBg: 'bg1',
+      stateManager,
     };
   },
   created: function(){
