@@ -6,9 +6,8 @@
           <p>Il Libro dei Salmi è un testo contenuto nella Bibbia che racchiude al
         suo interno 150 Salmi, delle composizioni poetiche sacre scritte da vari
         autori (principalmente dal re Davide).</p>
-      </header>
 
-      <p>
+                    <p>
         Possiamo dire che contengono un sunto di tutta la dottrina dell'Antico
         Testamento. Sono considerati un manuale di preghiera e meditazione che
         Dio stesso a voluto dare ai suoi figli. 
@@ -17,8 +16,9 @@
       <p>
         Il salterio è diviso in 5 parti, in analogia con il Pentateuco, e ciascuna parte termina con una benedizione o dossologia
       </p>
+      </header>
 
-      <div class="elencoSalmi">
+      <div :class="[{ animationShow_v3: stateManager.animationEnabled}, 'elencoSalmi' ]">
       <button v-on:click="goToBook(1)" style="cursor: pointer;">📕 Libro 1 →</button>
       <button v-on:click="goToBook(2)" style="cursor: pointer;">📕 Libro 2 →</button>
       <button v-on:click="goToBook(3)" style="cursor: pointer;">📕 Libro 3 →</button>

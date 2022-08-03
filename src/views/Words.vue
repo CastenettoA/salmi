@@ -6,7 +6,7 @@
         <p>Breve statistica delle parole più ricorrenti all'interno dei Salmi Biblici.</p>
     </header>
 
-      <div class="elencoSalmi">
+      <div :class="[{ animationShow_v3: stateManager.animationEnabled}, 'elencoSalmi' ]">
           <!-- improve this search only in content @todo -->
           <div><button><b class="salmo-title">Signore</b> • <span class="salmo-description">796 volte</span></button></div>
           <div><button><b class="salmo-title">Dio</b> •  <span class="salmo-description">565 volte</span></button></div>
