@@ -2,10 +2,12 @@
   <div class="homepage">    
 
     <main>
-      <h2>Parole di Luce</h2>
+      <header :class="[{ animationShow_v2_fast: stateManager.animationEnabled}, 'bgStars', 'mb-1' ]">
+        <h1>Parole di Luce</h1>
+      </header>
 
 
-      <div class="wordsOfLight_lists">
+      <div :class="[{ animationShow_v3_fast: stateManager.animationEnabled}, 'wordsOfLight_lists' ]">
         <!-- 3 milestone 
         TITOLO . VERSO . RIFERIMENTO . IMMAGINE
         - 3 salmi

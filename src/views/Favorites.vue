@@ -2,10 +2,12 @@
   <div class="homepage">    
 
     <main>
-      <h2>Elenco dei Tuoi Salmi Preferiti</h2>
+      <header :class="[{ animationShow_v2_fast: stateManager.animationEnabled}, 'bgSea' ]">
+        <h1>Elenco dei Tuoi Salmi Preferiti</h1>
+      </header>
 
 
-      <div class="elencoSalmi" v-if="thereIsFavorites">
+      <div v-if="thereIsFavorites" :class="[{ animationShow_v3_fast: stateManager.animationEnabled}, 'elencoSalmi' ]">
         <div class="single-salmo" v-bind:key="key" v-for="(salmo, key) in salmi">
           <!-- <span class="book-nuber" v-if="key+1 == 1 && salmo.favorite"><h3>Libro 1</h3></span> 
           TODO show book number if 1 to 50 and fav=true and isFirstTime ... -->

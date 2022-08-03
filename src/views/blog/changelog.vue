@@ -1,34 +1,35 @@
 <template>
   <main>
     <div class="single-salmo">
-        <h1>
-        <span class="gradient">Changelog</span>
-        <!-- <span class="desc"
-          > &bull; Il Libro Dei Salmi</span
-        > -->
-      </h1>
+      <header :class="[{ animationShow_v2_fast: stateManager.animationEnabled}, 'bgSea' ]">
+        <h1>ChangeLog</h1>
 
       <p>
-        Questo è il centro degli aggiornamenti della nostra applicazione così che tu possa vedere gli ultimi 
-        aggiornamenti e il nostro impegno per creare cose straordinarie. <br>
+        Questo è il centro degli aggiornamenti della nostra applicazione. Un luogo dove vedere gli ultimi 
+        aggiornamenti dell'applicazione e il nostro impegno per creare cose straordinarie. <br>
         Vuoi partecipare? Scrivi una email a <a href="mailto:castenetto.andrea@gmail.com">castenetto.andrea@gmail.com</a>
       </p>
+      </header>
 
-      <div class="changelogContent">
-        <div class="changelogEntry">
-          <h2>3 Agosto, 2022</h2>
-          <p>&#8226; Aggiunte animazioni a comparsa in homepage e nelle pagine interne.</p>
-        </div>
+      <div class="elencoSalmi">
+        <div class="single-salmo">
+          <button>
+            <div class="salmo-secondary-info"></div>
+            <b class="salmo-title">3 Agosto, 2022</b> → 
+            <span class="salmo-description">&#8226; Aggiunte animazioni a comparsa in homepage e nelle pagine interne.</span>
+          </button>
 
-        <div class="changelogEntry">
-          <h2>1 Agosto, 2022</h2>
-          <p>&#8226; Aggiunta la funzionalità di ricerca. Ora è possibile cercare nei salmi e nel loro contenuto.</p>
-          <p>&#8226; Miglioramento dell'aspetto estetico della parte alta dell'applicazione. (l'header)</p>
-        </div>
-      
-        <div class="changelogEntry">
-          <h2>Da Luglio 2021</h2>
-          <p>&#8226; Molti aggiornamenti che non sono stati annunciati pubblicamente.</p>
+          <button>
+            <div class="salmo-secondary-info"></div>
+            <b class="salmo-title">1 Agosto, 2022</b> → 
+            <span class="salmo-description">&#8226; Aggiunta la funzionalità di ricerca. Ora è possibile cercare nei salmi e nel loro contenuto. &#8226; Miglioramento dell'aspetto estetico della parte alta dell'applicazione. (l'header)</span>
+          </button> 
+
+          <button>
+            <div class="salmo-secondary-info"></div>
+            <b class="salmo-title">Da Luglio 2021</b> → 
+            <span class="salmo-description">&#8226; Molti aggiornamenti che non sono stati annunciati pubblicamente.</span>
+          </button> 
         </div>
       </div>
 
@@ -39,11 +40,14 @@
 
 <script>
 import salmi from "@/assets/json/salmi.json";
+import {stateManager} from "@/stateManager.js";
+
 
 export default {
   data: function () {
     return {
       salmi: salmi.items,
+      stateManager
     };
   },
   created: function(){
