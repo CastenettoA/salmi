@@ -16,8 +16,8 @@
 
       <div class="changelogContent">
         <div class="changelogEntry">
-          <h2>2 Agosto, 2022</h2>
-          <p>&#8226; Aggiunte animazioni alla web app.</p>
+          <h2>3 Agosto, 2022</h2>
+          <p>&#8226; Aggiunte animazioni a comparsa in homepage e nelle pagine interne.</p>
         </div>
 
         <div class="changelogEntry">
