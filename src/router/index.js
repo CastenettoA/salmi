@@ -31,7 +31,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  base: '/app/salmi/',
+  base: '/app/salmi2/',
   routes
 })
 
