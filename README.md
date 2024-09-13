@@ -1,6 +1,6 @@
-# salmi-v3
+# Salmi Biblici
 
-Web App che mostra dinamicamente i Salmi Biblici
+Web App che mostra dinamicamente i Salmi Biblici. Applicazione web sviluppata con vue. 
 
 ### Upload su ca.com 
 Questa app non si aggiorna in automatico tramite netlify ma deve essere caricata
